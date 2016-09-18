@@ -16,15 +16,15 @@
                         <th></th>
                         <th><a href ="" ng-click="orderBy('name')"/>Name</th>
                         <th><a href ="" ng-click="orderBy('telephone')"/>Telephone</th>
-                        <th><a href ="" ng-click="orderBy('date')"/>Date of Registration</th>
                         <th><a href ="" ng-click="orderBy('operator')"/>Operator</th>
+                        <th><a href ="" ng-click="orderBy('date')"/>Date of Registration</th>                      
                     </tr>
                     <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion | orderBy:orderByCriterion:orderByDirection">     
                         <td><input type="checkbox" ng-model="contact.selected"/></td>                  
                         <td>{{contact.name | uppercase}}</td>
-                        <td>{{contact.telephone}}</td>
-                        <td>{{contact.date | date:'MM/dd/yyyy HH:mm'}}</td>
+                        <td>{{contact.telephone}}</td>                     
                         <td>{{contact.operator.name | lowercase}}</td>
+                        <td>{{contact.date | date:'MMM EEE MM/dd/yyyy HH:mm'}}</td>
                     </tr>
                 </table>
                 <hr/>   
@@ -32,7 +32,7 @@
                     <input class="form-control" type="text" placeholder="Name" name="name" ng-model="contact.name"  ng-required="true" ng-minlength="5"/>
                     <input class="form-control" type="text" placeholder="Telephone" name="telephone" ng-model="contact.telephone" ng-required="true" ng-pattern="/^\d{4,5}-?\d{4}$/" >
                     <select class="form-control" name="operator" ng-model="contact.operator" ng-options="
-                    operator.name group by operator.category for operator in operators | orderBy:'name'" required>
+                    operator.name +' (price per minute: ' + (operator.pricePerMinute | currency) + ')' for operator in operators | orderBy:'name'" required>
                         <option value="">Select an operator</option>
                     </select>
                 </form>
@@ -62,21 +62,22 @@
             <div ng-include="'footer.html'"></div>
     </body>
     <script src="bower_components/angular/angular.min.js"></script>
-    <script src="bower_components/angular-messages/angular-messages.min.js"></script>    
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-i18n/angular-locale_de-de.js"></script>      
     <script>
         angular.module("telephoneList", ["ngMessages"]);
         angular.module("telephoneList").controller("telephoneListController", function($scope)
         {
              $scope.app = "Telephone List"   
              $scope.contacts = [
-                 {name: "Pedro", telephone: "999998888", date: new Date(), operator: {name: "O²", code: 1, category: "Cellphone"}},
-                 {name: "Ana", telephone: "99991111", date: new Date(), operator: {name: "Telekom", code: 2, category: "Cellphone"}},
-                 {name: "João", telephone: "99992222", date: new Date(), operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}}
+                 {name: "Pedro", telephone: "999998888", date: new Date(), operator: {name: "O²", code: 1}},
+                 {name: "Ana", telephone: "99991111", date: new Date(), operator: {name: "Telekom", code: 2}},
+                 {name: "João", telephone: "99992222", date: new Date(), operator: {name: "Vodafone", code: 3}}
              ];
              $scope.operators = [
-                 {name: "O²", code: 1, category: "Cellphone"},
-                 {name: "Telekom", code: 2, category: "Cellphone"},
-                 {name: "Vodafone", code: 3, category: "Commercial Phone"}
+                 {name: "O²", code: 1, category: "Cellphone", pricePerMinute: 0.15},
+                 {name: "Telekom", code: 2, category: "Commercial Phone", pricePerMinute: 0.18},
+                 {name: "Vodafone", code: 3, category: "CellPhone", pricePerMinute: 0.12}
              ];
              $scope.addContact = function(contact) {
                  contact.date = new Date();
