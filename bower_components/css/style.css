@@ -1,0 +1,27 @@
+.jumbotron{
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.table{
+    margin-top: 20px;
+}
+th {text-align: center}
+.form-control{
+    margin-bottom: 5px;
+}
+.selected{
+    background-color: khaki;
+}
+.bold{
+    font-weight: bold;
+}
+.color-block{
+    width: 20px;
+    height: 20px;
+}
+.footer{
+    text-align: center;
+    font-weight: bold;
+}

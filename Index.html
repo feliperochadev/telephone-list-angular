@@ -104,14 +104,14 @@
              //get Data Sources
              var loadContacts = function()
              {
-                 $http.get("data-source/contacts.json").success(function(data, status)
+                 $http.get("http://localhost:3412/contacts").success(function(data, status)
                  {
                      $scope.contacts = data;
                  });
              }
              var loadOperators = function()
              {
-                 $http.get("data-source/operators.json").success(function(data, status)
+                 $http.get("http://localhost:3412/operators").success(function(data, status)
                  {
                      $scope.operators = data;
                  });
