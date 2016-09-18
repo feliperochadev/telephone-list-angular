@@ -10,6 +10,7 @@
     <body ng-controller="telephoneListController">
             <div class="jumbotron">
                 <h3>{{app}}</h3>
+                <input class="form-control" type="text" ng-model="searchCriterion" placeholder="Search..."/>
                 <table class="table table-striped" ng-show="contacts.length > 0">
                     <tr>
                         <th></th>
@@ -17,9 +18,8 @@
                         <th>Telephone</th>
                         <th>Date of Registration</th>
                         <th>Operator</th>
-                        <th></th>
                     </tr>
-                    <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts">     
+                    <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion">     
                         <td><input type="checkbox" ng-model="contact.selected"/></td>                  
                         <td>{{contact.name | uppercase}}</td>
                         <td>{{contact.telephone}}</td>
