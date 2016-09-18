@@ -1,69 +1,73 @@
 <!DOCTYPE html>
 <html ng-app="telephoneList">
-    <head>
-        <title>Telephone List</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-        <link rel="stylesheet" type="text/css" href="css/style.css"
-    </head>
+
+<head>
+    <title>Telephone List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" </head>
+
     <body ng-controller="telephoneListController">
-            <div class="jumbotron">
-                <h3>{{app}}</h3>
-                <input class="form-control" type="text" ng-model="searchCriterion" placeholder="Search..."/>
-                <table class="table table-striped" ng-show="contacts.length > 0">
-                    <tr>
-                        <th></th>
-                        <th><a href ="" ng-click="orderBy('name')"/>Name</th>
-                        <th><a href ="" ng-click="orderBy('telephone')"/>Telephone</th>
-                        <th><a href ="" ng-click="orderBy('operator')"/>Operator</th>
-                        <th><a href ="" ng-click="orderBy('date')"/>Date of Registration</th>                      
-                    </tr>
-                    <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion | orderBy:orderByCriterion:orderByDirection">     
-                        <td><input type="checkbox" ng-model="contact.selected"/></td>                  
-                        <td>{{contact.name | uppercase}}</td>
-                        <td>{{contact.telephone}}</td>                     
-                        <td>{{contact.operator.name | lowercase}}</td>
-                        <td>{{contact.date | date:'MMM EEE MM/dd/yyyy HH:mm'}}</td>
-                    </tr>
-                </table>
-                <hr/>   
-                <form name="contactForm">            
-                    <input class="form-control" type="text" placeholder="Name" name="name" ng-model="contact.name"  ng-required="true" ng-minlength="5"/>
-                    <input class="form-control" type="text" placeholder="Telephone" name="telephone" ng-model="contact.telephone" ng-required="true" ng-pattern="/^\d{4,5}-?\d{4}$/" >
-                    <select class="form-control" name="operator" ng-model="contact.operator" ng-options="
-                    operator.name +' (price per minute: ' + (operator.pricePerMinute | currency) + ')' for operator in operators | orderBy:'name'" required>
+        <div class="jumbotron">
+            <h3>{{app}}</h3>
+            {{messageError}}
+            <input class="form-control" type="text" ng-model="searchCriterion" placeholder="Search..." />
+            <table class="table table-striped" ng-show="contacts.length > 0">
+                <tr>
+                    <th></th>
+                    <th><a href="" ng-click="orderBy('name')" />Name</th>
+                    <th><a href="" ng-click="orderBy('telephone')" />Telephone</th>
+                    <th><a href="" ng-click="orderBy('operator')" />Operator</th>
+                    <th><a href="" ng-click="orderBy('date')" />Date of Registration</th>
+                </tr>
+                <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion | orderBy:orderByCriterion:orderByDirection">
+                    <td><input type="checkbox" ng-model="contact.selected" /></td>
+                    <td>{{contact.name | uppercase}}</td>
+                    <td>{{contact.telephone}}</td>
+                    <td>{{contact.operator.name | lowercase}}</td>
+                    <td>{{contact.date | date:'MMM EEE MM/dd/yyyy HH:mm'}}</td>
+                </tr>
+            </table>
+            <hr/>
+            <form name="contactForm">
+                <input class="form-control" type="text" placeholder="Name" name="name" ng-model="contact.name" ng-required="true" ng-minlength="5"
+                />
+                <input class="form-control" type="text" placeholder="Telephone" name="telephone" ng-model="contact.telephone" ng-required="true"
+                    ng-pattern="/^\d{4,5}-?\d{4}$/">
+                <select class="form-control" name="operator" ng-model="contact.operator" ng-options="
+                    operator.name +' (price per minute: ' + (operator.pricePerMinute | currency) + ')' for operator in operators | orderBy:'name'"
+                    required>
                         <option value="">Select an operator</option>
                     </select>
-                </form>
-                <div ng-messages="contactForm.name.$error" >
-                    <div ng-message="invalid" class="alert alert-danger">
-                        Please fill the name!
-                    </div>
-                    <div ng-message="minlength" class="alert alert-danger">
-                        The Name field need to have 5 characters at minimum!
-                    </div>
+            </form>
+            <div ng-messages="contactForm.name.$error">
+                <div ng-message="invalid" class="alert alert-danger">
+                    Please fill the name!
                 </div>
-                <div ng-messages="contactForm.telephone.$error">
-                    <div ng-message="invalid" class="alert alert-danger">
-                        Please fill the telephone number!
-                    </div>
-                    <div ng-message="pattern" class="alert alert-danger">
-                        The Telephone field need to have 8 or 9 numbers!
-                    </div> 
-                </div>  
-                <div ng-show="contactForm.operator.$invalid && contactForm.operator.$dirty" class="alert alert-danger">
-                        Please select the operator!
-                </div>              
-                <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled=
-                "contactForm.$invalid">Add Contact</button> 
-                <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)" ng-show="isContactSeleted(contacts)">Remove Selected Contacts </button> 
+                <div ng-message="minlength" class="alert alert-danger">
+                    The Name field need to have 5 characters at minimum!
+                </div>
             </div>
-            <div ng-include="'footer.html'"></div>
+            <div ng-messages="contactForm.telephone.$error">
+                <div ng-message="invalid" class="alert alert-danger">
+                    Please fill the telephone number!
+                </div>
+                <div ng-message="pattern" class="alert alert-danger">
+                    The Telephone field need to have 8 or 9 numbers!
+                </div>
+            </div>
+            <div ng-show="contactForm.operator.$invalid && contactForm.operator.$dirty" class="alert alert-danger">
+                Please select the operator!
+            </div>
+            <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid">Add Contact</button>
+            <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)" ng-show="isContactSeleted(contacts)">Remove Selected Contacts </button>
+        </div>
+        <div ng-include="'footer.html'"></div>
     </body>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
-    <script src="bower_components/angular-i18n/angular-locale_de-de.js"></script>      
+    <script src="bower_components/angular-i18n/angular-locale_de-de.js"></script>
     <script>
         angular.module("telephoneList", ["ngMessages"]);
         angular.module("telephoneList").controller("telephoneListController", function($scope, $http)
@@ -73,21 +77,34 @@
              $scope.operators = [];
                         
              $scope.addContact = function(contact) {
-                 contact.date = new Date();
-                 $scope.contacts.push(contact);
-                 delete $scope.contact
-                 $scope.contactForm.$setPristine();
+                 contact.date = new Date();                
+                 $http.post("http://localhost:3412/contacts", contact).success(function(data) {
+                    delete $scope.contact
+                    $scope.contactForm.$setPristine();
+                    $scope.contacts.push(data);
+                 }).error(function (data){
+                    $scope.messageError = "Ops we have a problem: " + data;
+                 })
              }
              $scope.class = "selected";
              $scope.removeContacts = function(contacts)
              {
-                 $scope.contacts = contacts.filter(function (contact)
+                 var contactsNotRemoved = contacts.filter(function (contact)
                  {
                      //return only the contacts that are not selected
                      //and attribute to !scope.contacts
                      if (!contact.selected) return contact;
                  });
-                 
+
+                $http({ url: 'http://localhost:3412/contacts', 
+                    method: 'DELETE', 
+                    data: {data: contactsNotRemoved}, 
+                    headers: {"Content-Type": "application/json;charset=utf-8"}
+                }).then(function(res) {
+                    $scope.contacts = res.data;
+                }, function(error) {
+                    $scope.messageError = "Ops we have a problem: " + error;
+                });
              }
              $scope.isContactSeleted = function (contact)
              {
@@ -104,20 +121,25 @@
              //get Data Sources
              var loadContacts = function()
              {
-                 $http.get("http://localhost:3412/contacts").success(function(data, status)
+                 $http.get("http://localhost:3412/contacts").success(function(data)
                  {
                      $scope.contacts = data;
+                 }).error(function (data){
+                     $scope.messageError = "Ops we have a problem: " + data;
                  });
              }
              var loadOperators = function()
              {
-                 $http.get("http://localhost:3412/operators").success(function(data, status)
+                 $http.get("http://localhost:3412/operators").success(function(data)
                  {
                      $scope.operators = data;
+                 }).error(function (data){
+                     $scope.messageError = "Ops we have a problem: " + data;
                  });
              } 
              loadContacts();
              loadOperators();
         });
     </script>
+
 </html>

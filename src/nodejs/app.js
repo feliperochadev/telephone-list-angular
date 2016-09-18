@@ -1,15 +1,19 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var app = express();
 
 app.use(express.static(__dirname + '/public'));
-//app.use(express.bodyParser());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+app.use(bodyParser.json());
 
-var contatos = [
+var contacts = [
                  {name: "Pedro", telephone: "99999-8888", date: new Date(), operator: {name: "O²", code: 1, category: "Cellphone"}},
                  {name: "Ana", telephone: "9999-1111", date: new Date(), operator: {name: "Telekom", code: 2, category: "Cellphone"}},
                  {name: "João", telephone: "9999-2222", date: new Date(), operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}}
              ];
-var operadoras = [
+var operators = [
                  {name: "O²", code: 1, category: "Cellphone", pricePerMinute: 0.15},
                  {name: "Telekom", code: 2, category: "Commercial Phone", pricePerMinute: 0.18},
                  {name: "Vodafone", code: 3, category: "CellPhone", pricePerMinute: 0.12}
@@ -25,14 +29,19 @@ app.all('*', function(req, res, next) {
 });
 
 app.get('/contacts', function(req, res) {
-  res.json(contatos);
+  res.json(contacts);
 });
 
 app.post('/contacts', function(req, res) {
-  contatos.push(req.body);
-  res.json(true);
+  contacts.push(req.body);
+  res.status(201).send(contacts[contacts.length-1]);
+});
+
+app.delete('/contacts', function(req, res) {
+  contacts = req.body.data
+  res.status(200).send(contacts);
 });
 
 app.get('/operators', function(req, res) {
-  res.json(operadoras);
+  res.json(operators);
 });
