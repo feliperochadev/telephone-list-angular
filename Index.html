@@ -37,6 +37,7 @@
                 "!contact.name || !contact.telephone || !contact.operator">Add Contact</button> 
                 <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)" ng-show="isContactSeleted(contacts)">Remove Selected Contacts </button> 
             </div>
+            <div ng-include="'footer.html'"></div>
     </body>
     <script src="bower_components/angular/angular.min.js"></script>
     <script>
