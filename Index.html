@@ -10,7 +10,7 @@
     <body ng-controller="telephoneListController">
             <div class="jumbotron">
                 <h3>{{app}}</h3>
-                <table class="table">
+                <table class="table" ng-show="contacts.length > 0">
                     <tr>
                         <th></th>
                         <th>Name</th>
@@ -35,7 +35,7 @@
                 </select>
                 <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled=
                 "!contact.name || !contact.telephone || !contact.operator">Add Contact</button> 
-                <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)" ng-disabled="!isContactSeleted(contacts)">Remove Selected Contacts </button> 
+                <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)" ng-show="isContactSeleted(contacts)">Remove Selected Contacts </button> 
             </div>
     </body>
     <script src="bower_components/angular/angular.min.js"></script>
