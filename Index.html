@@ -14,12 +14,12 @@
                 <table class="table table-striped" ng-show="contacts.length > 0">
                     <tr>
                         <th></th>
-                        <th>Name</th>
-                        <th>Telephone</th>
-                        <th>Date of Registration</th>
-                        <th>Operator</th>
+                        <th><a href ="" ng-click="orderBy('name')"/>Name</th>
+                        <th><a href ="" ng-click="orderBy('telephone')"/>Telephone</th>
+                        <th><a href ="" ng-click="orderBy('date')"/>Date of Registration</th>
+                        <th><a href ="" ng-click="orderBy('operator')"/>Operator</th>
                     </tr>
-                    <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion">     
+                    <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion | orderBy:orderByCriterion:orderByDirection">     
                         <td><input type="checkbox" ng-model="contact.selected"/></td>                  
                         <td>{{contact.name | uppercase}}</td>
                         <td>{{contact.telephone}}</td>
@@ -32,7 +32,7 @@
                     <input class="form-control" type="text" placeholder="Name" name="name" ng-model="contact.name"  ng-required="true" ng-minlength="5"/>
                     <input class="form-control" type="text" placeholder="Telephone" name="telephone" ng-model="contact.telephone" ng-required="true" ng-pattern="/^\d{4,5}-?\d{4}$/" >
                     <select class="form-control" name="operator" ng-model="contact.operator" ng-options="
-                    operator.name group by operator.category for operator in operators" required>
+                    operator.name group by operator.category for operator in operators | orderBy:'name'" required>
                         <option value="">Select an operator</option>
                     </select>
                 </form>
@@ -101,6 +101,11 @@
                  {
                      return contact.selected;
                  });
+             }
+             $scope.orderBy = function (field)
+             {
+                 $scope.orderByCriterion = field;
+                 $scope.orderByDirection = !$scope.orderByDirection;
              }
         });
     </script>
