@@ -1,0 +1,17 @@
+{
+  "name": "AppTelephoneList",
+  "authors": [
+    "Felipe Rocha <feliperocha.ti@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
