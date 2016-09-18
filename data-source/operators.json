@@ -1,0 +1,5 @@
+[
+   {"name": "O²", "code": "1", "category": "Cellphone", "pricePerMinute": "0.15"},
+   {"name": "Telekom", "code": "2", "category": "Commercial Phone", "pricePerMinute": "0.18"},
+   {"name": "Vodafone", "code": "3", "category": "CellPhone", "pricePerMinute": "0.12"}
+]

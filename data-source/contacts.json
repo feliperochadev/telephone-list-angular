@@ -1,0 +1,5 @@
+[
+    {"name": "Pedro", "telephone": "98999-9888", "date": "2016-09-17T05:15:43.511Z", "operator": {"name": "O²", "code": "1"}},
+    {"name": "Ana", "telephone": "9999-1111", "date": "2016-09-17T10:22:43.511Z", "operator": {"name": "Telekom", "code": "2"}},
+    {"name": "João", "telephone": "9999-2222", "date": "2016-09-18T17:25:43.511Z", "operator": {"name": "Vodafone", "code": "3"}}
+]
