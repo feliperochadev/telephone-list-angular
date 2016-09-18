@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="telephoneList">
+    <head>
+        <title>Telephone List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="css/style.css"
+    </head>
+    <body ng-controller="telephoneListController">
+            <div class="jumbotron">
+                <h3>{{app}}</h3>
+                <table class="table">
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Telephone</th>
+                        <th>Operator</th>
+                    </tr>
+                    <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts">     
+                        <td><input type="checkbox" ng-model="contact.selected"/></td>                  
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.telephone}}</td>
+                        <td>{{contact.operator.name}}</td>
+                    </tr>
+                </table>
+                <hr/>               
+                <input class="form-control" type="text" ng-model="contact.name" placeholder="Name"/>
+                <input class="form-control" type="text" ng-model="contact.telephone" placeholder="Telephone">
+                <select class="form-control" ng-model="contact.operator" ng-options="
+                operator.name group by operator.category for operator in operators">
+                    <option value="">Select an operator</option>
+                </select>
+                <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled=
+                "!contact.name || !contact.telephone || !contact.operator">Add Contact</button> 
+                <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)">Remove Selected Contacts </button> 
+            </div>
+    </body>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        angular.module("telephoneList", []);
+        angular.module("telephoneList").controller("telephoneListController", function($scope)
+        {
+             $scope.app = "Telephone List"   
+             $scope.contacts = [
+                 {name: "Pedro", telephone: "999998888", operator: {name: "O²", code: 1, category: "Cellphone"}},
+                 {name: "Ana", telephone: "99991111", operator: {name: "Telekom", code: 2, category: "Cellphone"}},
+                 {name: "João", telephone: "99992222", operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}}
+             ];
+             $scope.operators = [
+                 {name: "O²", code: 1, category: "Cellphone"},
+                 {name: "Telekom", code: 2, category: "Cellphone"},
+                 {name: "Vodafone", code: 3, category: "Commercial Phone"}
+             ];
+             $scope.addContact = function(contact) {
+                 $scope.contacts.push(contact);
+                 delete $scope.contact
+             }
+             $scope.class = "selected";
+
+             $scope.removeContacts = function(contacts)
+             {
+                 $scope.contacts = contacts.filter(function (contact)
+                 {
+                     //return only the contacts that are not selected
+                     //and attribute to !scope.contacts
+                     if (!contact.selected) return contact;
+                 });
+
+             }
+        });
+    </script>
+</html>
