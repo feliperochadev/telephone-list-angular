@@ -15,7 +15,7 @@
                         <th></th>
                         <th>Name</th>
                         <th>Telephone</th>
-                        <th>Date</th>
+                        <th>Date of Registration</th>
                         <th>Operator</th>
                         <th></th>
                     </tr>
@@ -79,6 +79,7 @@
                  {name: "Vodafone", code: 3, category: "Commercial Phone"}
              ];
              $scope.addContact = function(contact) {
+                 contact.date = new Date();
                  $scope.contacts.push(contact);
                  delete $scope.contact
                  $scope.contactForm.$setPristine();
