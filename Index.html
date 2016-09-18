@@ -33,7 +33,7 @@
                 </select>
                 <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled=
                 "!contact.name || !contact.telephone || !contact.operator">Add Contact</button> 
-                <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)">Remove Selected Contacts </button> 
+                <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)" ng-disabled="!isContactSeleted(contacts)">Remove Selected Contacts </button> 
             </div>
     </body>
     <script src="bower_components/angular/angular.min.js"></script>
@@ -57,7 +57,6 @@
                  delete $scope.contact
              }
              $scope.class = "selected";
-
              $scope.removeContacts = function(contacts)
              {
                  $scope.contacts = contacts.filter(function (contact)
@@ -66,7 +65,14 @@
                      //and attribute to !scope.contacts
                      if (!contact.selected) return contact;
                  });
-
+                 
+             }
+             $scope.isContactSeleted = function (contact)
+             {
+                 return contact.some(function (contact)
+                 {
+                     return contact.selected;
+                 });
              }
         });
     </script>
