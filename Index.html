@@ -16,12 +16,14 @@
                         <th>Name</th>
                         <th>Telephone</th>
                         <th>Operator</th>
+                        <th></th>
                     </tr>
                     <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts">     
                         <td><input type="checkbox" ng-model="contact.selected"/></td>                  
                         <td>{{contact.name}}</td>
                         <td>{{contact.telephone}}</td>
                         <td>{{contact.operator.name}}</td>
+                        <td><div class="color-block" ng-style="{'background-color': contact.color}"></div></td>
                     </tr>
                 </table>
                 <hr/>               
@@ -43,9 +45,9 @@
         {
              $scope.app = "Telephone List"   
              $scope.contacts = [
-                 {name: "Pedro", telephone: "999998888", operator: {name: "O²", code: 1, category: "Cellphone"}},
-                 {name: "Ana", telephone: "99991111", operator: {name: "Telekom", code: 2, category: "Cellphone"}},
-                 {name: "João", telephone: "99992222", operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}}
+                 {name: "Pedro", telephone: "999998888", operator: {name: "O²", code: 1, category: "Cellphone"}, color: 'blue'},
+                 {name: "Ana", telephone: "99991111", operator: {name: "Telekom", code: 2, category: "Cellphone"}, color: 'yellow'},
+                 {name: "João", telephone: "99992222", operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}, color: 'red'}
              ];
              $scope.operators = [
                  {name: "O²", code: 1, category: "Cellphone"},

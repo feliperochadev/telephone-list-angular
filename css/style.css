@@ -17,3 +17,7 @@ th {text-align: center}
 .bold{
     font-weight: bold;
 }
+.color-block{
+    width: 20px;
+    height: 20px;
+}
