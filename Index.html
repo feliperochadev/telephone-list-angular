@@ -6,17 +6,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="src/css/style.css" </head>
-</head>
+    <link rel="stylesheet" type="text/css" href="src/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="src/css/ui.css" </head>
+
     <body ng-controller="telephoneListController">
         <div class="jumbotron">
             <h3>{{app}}</h3>
-            {{messageError}}
+            <ui-alert>
+                {{messageError}}
+            </ui-alert>
             <input class="form-control" type="text" ng-model="searchCriterion" placeholder="Search..." />
             <table class="table" ng-show="contacts.length > 0">
                 <tr>
                     <th></th>
-                    <th><a href="" ng-click="orderBy('serial')"/>Serial</th>
+                    <th><a href="" ng-click="orderBy('serial')" />Serial</th>
                     <th><a href="" ng-click="orderBy('name')" />Name</th>
                     <th><a href="" ng-click="orderBy('telephone')" />Telephone</th>
                     <th><a href="" ng-click="orderBy('operator')" />Operator</th>
@@ -41,7 +44,7 @@
                     operator.name +' (price per minute: ' + (operator.pricePerMinute | currency) + ')' for operator in operators | orderBy:'name'"
                     required>
                         <option value="">Select an operator</option>
-                    </select>
+                </select>
             </form>
             <div ng-messages="contactForm.name.$error">
                 <div ng-message="invalid" class="alert alert-danger">
@@ -79,9 +82,5 @@
     <script src="src/js/configSerialGenerator.js"></script>
     <script src="src/js/filters/formattedNameFilter.js"></script>
     <script src="src/js/filters/ellipsisFilter.js"></script>
-    
-    <script>       
-
-    </script>
-
+    <script src="src/js/directives/uiAlertDirective.js"></script>
 </html>

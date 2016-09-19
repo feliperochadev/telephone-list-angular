@@ -13,7 +13,7 @@
                     $scope.contactForm.$setPristine();
                     $scope.contacts.push(data);
                  }).error(function (data){
-                    $scope.messageError = "Ops we have a problem: " + data;
+                    $scope.messageError = "We have a problem: " + data;
                  })
              }
              $scope.class = "selected";
@@ -29,7 +29,7 @@
                 contactsAPI.deleteContacts(contactsNotRemoved).then(function(res) {
                     $scope.contacts = res.data;
                 }, function(error) {
-                    $scope.messageError = "Ops we have a problem: " + error;
+                    $scope.messageError = "We have a problem: " + error;
                 });
              }
              $scope.isContactSeleted = function (contact)
@@ -51,7 +51,7 @@
                  {
                      $scope.contacts = data;
                  }).error(function (data){
-                     $scope.messageError = "Ops we have a problem: " + data;
+                     $scope.messageError = "We have a problem: " + data;
                  });
              }
              var loadOperators = function()
@@ -60,7 +60,7 @@
                  {
                      $scope.operators = data;
                  }).error(function (data){
-                     $scope.messageError = "Ops we have a problem: " + data;
+                     $scope.messageError = "We have a problem: " + data;
                  });
              } 
              loadContacts();
