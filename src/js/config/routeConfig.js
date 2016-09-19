@@ -9,7 +9,7 @@ angular.module("telephoneList").config(function ($routeProvider) {
         }
     });
     $routeProvider.when("/add-contact", {
-        templateUrl: "src/views/add-Contact.html",
+        templateUrl: "src/views/add-contact.html",
         controller: "addContactController",
         resolve: {
             operators: function (operatorsAPI) {
