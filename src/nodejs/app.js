@@ -9,9 +9,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 var contacts = [
-                 {serial: "37G=RER/AESGU W", name: "Pedro", telephone: "99999-8888", date: new Date(), operator: {name: "O²", code: 1, category: "Cellphone"}},
-                 {serial: "FA ;Z/ EG_WY-;J", name: "Ana", telephone: "9999-1111", date: new Date(), operator: {name: "Telekom", code: 2, category: "Cellphone"}},
-                 {serial: "4L @C(;^9RGDU W", name: "João", telephone: "9999-2222", date: new Date(), operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}}
+                 {serial: "37G=RER/AESGU W", name: "Pedro da SILVA Rocha", telephone: "99999-8888", date: new Date(), operator: {name: "O²", code: 1, category: "Cellphone"}},
+                 {serial: "FA ;Z/ EG_WY-;J", name: "Ana maria Cristina", telephone: "9999-1111", date: new Date(), operator: {name: "Telekom", code: 2, category: "Cellphone"}},
+                 {serial: "4L @C(;^9RGDU W", name: "JOÃO costa", telephone: "9999-2222", date: new Date(), operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}}
              ];
 var operators = [
                  {name: "O²", code: 1, category: "Cellphone", pricePerMinute: 0.15},
