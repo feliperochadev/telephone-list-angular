@@ -1,12 +1,14 @@
-        angular.module("telephoneList").controller("telephoneListController", function($scope, $http)
+        angular.module("telephoneList").controller("telephoneListController", 
+            function($scope, contactsAPI, operatorsAPI, serialGenerator)
         {
              $scope.app = "Telephone List"  
              $scope.contacts = [];
              $scope.operators = [];
                         
              $scope.addContact = function(contact) {
+                 contact.serial = serialGenerator.generate();
                  contact.date = new Date();                
-                 $http.post("http://localhost:3412/contacts", contact).success(function(data) {
+                 contactsAPI.saveContact(contact).success(function(data) {
                     delete $scope.contact
                     $scope.contactForm.$setPristine();
                     $scope.contacts.push(data);
@@ -24,11 +26,7 @@
                      if (!contact.selected) return contact;
                  });
 
-                $http({ url: 'http://localhost:3412/contacts', 
-                    method: 'DELETE', 
-                    data: {data: contactsNotRemoved}, 
-                    headers: {"Content-Type": "application/json;charset=utf-8"}
-                }).then(function(res) {
+                contactsAPI.deleteContacts(contactsNotRemoved).then(function(res) {
                     $scope.contacts = res.data;
                 }, function(error) {
                     $scope.messageError = "Ops we have a problem: " + error;
@@ -49,7 +47,7 @@
              //get Data Sources
              var loadContacts = function()
              {
-                 $http.get("http://localhost:3412/contacts").success(function(data)
+                 contactsAPI.getContacts().success(function(data)
                  {
                      $scope.contacts = data;
                  }).error(function (data){
@@ -58,7 +56,7 @@
              }
              var loadOperators = function()
              {
-                 $http.get("http://localhost:3412/operators").success(function(data)
+                 operatorsAPI.getOperators().success(function(data)
                  {
                      $scope.operators = data;
                  }).error(function (data){

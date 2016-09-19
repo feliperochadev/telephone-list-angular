@@ -16,6 +16,7 @@
             <table class="table" ng-show="contacts.length > 0">
                 <tr>
                     <th></th>
+                    <th><a href="" ng-click="orderBy('serial')"/>Serial</th>
                     <th><a href="" ng-click="orderBy('name')" />Name</th>
                     <th><a href="" ng-click="orderBy('telephone')" />Telephone</th>
                     <th><a href="" ng-click="orderBy('operator')" />Operator</th>
@@ -23,6 +24,7 @@
                 </tr>
                 <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion | orderBy:orderByCriterion:orderByDirection">
                     <td><input type="checkbox" ng-model="contact.selected" /></td>
+                    <td>{{contact.serial}}</td>
                     <td>{{contact.name | uppercase}}</td>
                     <td>{{contact.telephone}}</td>
                     <td>{{contact.operator.name | lowercase}}</td>
@@ -69,7 +71,13 @@
     <script src="bower_components/angular-messages/angular-messages.min.js"></script>
     <script src="bower_components/angular-i18n/angular-locale_de-de.js"></script>
     <script src="src/js/app.js"></script>
+    <script src="src/js/configValue.js"></script>
+    <script src="src/js/services/contactsAPIService.js"></script>
+    <script src="src/js/services/operatorsAPIService.js"></script>
+    <script src="src/js/services/serialGeneratorService.js"></script>
     <script src="src/js/controllers/telephoneListController.js"></script>
+    <script src="src/js/configSerialGenerator.js"></script>
+    
     <script>       
 
     </script>
