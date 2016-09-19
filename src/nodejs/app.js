@@ -34,6 +34,7 @@ app.get('/contacts', function(req, res) {
 
 app.get('/contacts/:id', function(req, res) {
   var contact = contacts.find(o => o.id === req.params.id);
+  if (contact === undefined) return res.status(404).end();
   res.json(contact);
 });
 

@@ -26,5 +26,9 @@ angular.module("telephoneList").config(function ($routeProvider) {
             }
         }
     });
+    $routeProvider.when("/error", {
+        templateUrl: "src/views/error.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/contacts" })
 });
