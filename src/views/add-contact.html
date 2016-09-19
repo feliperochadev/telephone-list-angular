@@ -1,0 +1,34 @@
+<div class="jumbotron">
+    <form name="contactForm">
+        <input class="form-control" type="text" placeholder="Name" name="name" ng-model="contact.name" ng-required="true" ng-minlength="5"
+        />
+        <input class="form-control" type="text" placeholder="Telephone" name="telephone" ng-model="contact.telephone" ng-required="true"
+            ng-pattern="/^\d{4,5}-?\d{4}$/">
+        <select class="form-control" name="operator" ng-model="contact.operator" ng-options="
+                    operator.name +' (price per minute: ' + (operator.pricePerMinute | currency) + ')' for operator in operators | orderBy:'name'"
+            required>
+                        <option value="">Select an operator</option>
+                </select>
+    </form>
+    <div ng-messages="contactForm.name.$error">
+        <div ng-message="invalid" class="alert alert-danger">
+            Please fill the name!
+        </div>
+        <div ng-message="minlength" class="alert alert-danger">
+            The Name field need to have 5 characters at minimum!
+        </div>
+    </div>
+    <div ng-messages="contactForm.telephone.$error">
+        <div ng-message="invalid" class="alert alert-danger">
+            Please fill the telephone number!
+        </div>
+        <div ng-message="pattern" class="alert alert-danger">
+            The Telephone field need to have 8 or 9 numbers!
+        </div>
+    </div>
+    <div ng-show="contactForm.operator.$invalid && contactForm.operator.$dirty" class="alert alert-danger">
+        Please select the operator!
+    </div>
+    <button class="btn btn-primary btn-block" ng-click="addContact(contact)" ng-disabled="contactForm.$invalid">Add Contact</button>
+    <a href="#/contatos">Home</a>
+</div>

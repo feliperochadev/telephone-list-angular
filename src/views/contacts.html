@@ -1,0 +1,32 @@
+<div class="jumbotron">
+    <ui-accordions>
+        <ui-accordion title="Telephone List">
+            This is a simple telephone list app made with AngularJS version 1.5.x and a tiny backend with nodeJS to provide a restful
+            API with some data in memory, You can get and see more details about how to run in <a href="https://github.com/feliperochadev/telephoneListAngular"
+                target="_blank" />github</a>
+        </ui-accordion>
+    </ui-accordions>
+    <ui-alert>
+        {{messageError}}
+    </ui-alert>
+    <input class="form-control" type="text" ng-model="searchCriterion" placeholder="Search..." />
+    <table class="table" ng-show="contacts.length > 0">
+        <tr>
+            <th></th>
+            <th><a href="" ng-click="orderBy('name')" />Name</th>
+            <th><a href="" ng-click="orderBy('telephone')" />Telephone</th>
+            <th><a href="" ng-click="orderBy('operator')" />Operator</th>
+            <th><a href="" ng-click="orderBy('date')" />Date of Registration</th>
+        </tr>
+        <tr ng-class="{'selected bold': contact.selected}" ng-repeat="contact in contacts | filter:searchCriterion | orderBy:orderByCriterion:orderByDirection">
+            <td><input type="checkbox" ng-model="contact.selected" /></td>
+            <td><a href="#/contactDetails/{{contact.id}}"/>{{contact.name | formattedName | ellipsis:15}}</td>
+            <td>{{contact.telephone}}</td>
+            <td>{{contact.operator.name | formattedName}}</td>
+            <td>{{contact.date | date:'MMM EEE MM/dd/yyyy HH:mm'}}</td>
+        </tr>
+    </table>
+    <hr/>
+    <a class="btn btn-primary btn-block" href="#/add-contact">Add Contact</a>
+    <button class="btn btn-danger btn-block" ng-click="removeContacts(contacts)" ng-show="isContactSeleted(contacts)">Remove Selected Contacts </button>
+</div>

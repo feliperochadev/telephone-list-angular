@@ -9,9 +9,9 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 var contacts = [
-                 {id: "f28d0ca0-4f23-4430-8da5-38b94c58f7ee", serial: "37G=RER/AESGU W", name: "Pedro da SILVA Rocha", telephone: "99999-8888", date: new Date(), operator: {name: "O²", code: 1, category: "Cellphone"}},
-                 {id: "b390acac-66c8-4a23-ad69-be95b9486eb0", serial: "FA ;Z/ EG_WY-;J", name: "Ana maria Cristina", telephone: "9999-1111", date: new Date(), operator: {name: "Telekom", code: 2, category: "Cellphone"}},
-                 {id: "24831dcb-bb59-4534-8c09-d49766c31a40", serial: "4L @C(;^9RGDU W", name: "JOÃO costa", telephone: "9999-2222", date: new Date(), operator: {name: "Vodafone", code: 3, category: "Commercial Phone"}}
+                 {id: "f28d0ca0-4f23-4430-8da5-38b94c58f7ee", serial: "37G=RER/AESGU W", name: "Pedro da SILVA Rocha", telephone: "99999-8888", date: new Date(), operator: {name: "O²", code: 1, category: "Cellphone", pricePerMinute: 0.15}},
+                 {id: "b390acac-66c8-4a23-ad69-be95b9486eb0", serial: "FA ;Z/ EG_WY-;J", name: "Ana maria Cristina", telephone: "9999-1111", date: new Date(), operator: {name: "Telekom", code: 2, category: "Cellphone",  pricePerMinute: 0.12}},
+                 {id: "24831dcb-bb59-4534-8c09-d49766c31a40", serial: "4L @C(;^9RGDU W", name: "JOÃO costa", telephone: "9999-2222", date: new Date(), operator: {name: "Vodafone", code: 3, category: "Commercial Phone", pricePerMinute: 0.18}}
              ];
 var operators = [
                  {name: "O²", code: 1, category: "Cellphone", pricePerMinute: 0.15},

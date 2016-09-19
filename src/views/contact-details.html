@@ -1,0 +1,23 @@
+<div class="jumbotron">
+    <table class="table">
+        <tr>
+            <td>Name: {{contact.name}}</td>
+        </tr>
+        <tr>
+            <td>Telephone: {{contact.telephone}}</td>
+        </tr>
+        <tr>
+            <td>Date of Registration: {{contact.date | date:"dd/MM/yyyy"}}</td>
+        </tr>
+        <tr>
+            <td>Operator: {{contact.operator.name}}</td>
+        </tr>
+        <tr>
+            <td>Price per minute: {{contact.operator.pricePerMinute}}</td>
+        </tr>
+        <tr>
+            <td>Serial: {{contact.serial }}</td>
+        </tr>
+    </table>
+    <a href="#/contatos">Home</a>
+</div>
