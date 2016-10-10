@@ -8,7 +8,7 @@ node
 express
 body-parser
 gulp
-gulp-connector
+gulp-connect
 ```
 
 ### Just Run
